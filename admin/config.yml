@@ -1,10 +1,10 @@
 backend:
   name: github
   repo: coral-aia/Compilation-of-websites.
-  branch: main 
+  branch: main        # 如果你的默认分支是 master，改为 master
 
-media_folder: "images/screenshots"   
-public_folder: "/images/screenshots" 
+media_folder: "images/screenshots"
+public_folder: "/images/screenshots"
 
 collections:
   - name: "sites"
@@ -15,16 +15,9 @@ collections:
       - name: "sites"
         label: "所有网站数据"
         file: "data/sites.json"
-        description: "集中存储网站信息"
         fields:
-          - name: "sites"
-            label: "网站数组"
-            label_singular: "网站"
-            widget: "list"
-            summary: "{{fields.name}} ({{fields.category}})"
-            fields:
-              - { name: "name", label: "网站名称", widget: "string", required: true }
-              - { name: "url", label: "网址", widget: "string", required: true, pattern: ["https?://.+", "必须以http://或https://开头"] }
-              - { name: "description", label: "一句话介绍", widget: "text", required: true, default: "暂无介绍" }
-              - { name: "category", label: "分类", widget: "string", required: true, default: "设计资源" }
-              - { name: "screenshot", label: "截图", widget: "image", required: false, media_library: { config: { multiple: false } }, hint: "建议上传16:9比例的图片，例如 800x450" }
+          - { name: "name", label: "网站名称", widget: "string", required: true }
+          - { name: "url", label: "网址", widget: "string", required: true, pattern: ["https?://.+", "必须以http://或https://开头"] }
+          - { name: "description", label: "一句话介绍", widget: "text", required: true, default: "暂无介绍" }
+          - { name: "category", label: "分类", widget: "string", required: true, default: "设计资源" }
+          - { name: "screenshot", label: "截图", widget: "image", required: false, media_library: { config: { multiple: false } } }
