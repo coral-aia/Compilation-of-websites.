@@ -3,8 +3,8 @@ backend:
   repo: coral-aia/Compilation-of-websites.
   branch: main 
 
-media_folder: "images/screenshots"   # 上传的截图存放路径
-public_folder: "/images/screenshots" # 公开访问路径
+media_folder: "images/screenshots"   
+public_folder: "/images/screenshots" 
 
 collections:
   - name: "sites"
