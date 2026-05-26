@@ -1,7 +1,7 @@
 backend:
   name: github
-  repo: coral-aia/Compilation-of-websites.
-  branch: main        # 如果你的默认分支是 master，改为 master
+  repo: coral-aia/Compilation-of-websites.   # 注意没有尾部斜杠，没有 .git
+  branch: main                               # 你的默认分支是 main
 
 media_folder: "images/screenshots"
 public_folder: "/images/screenshots"
@@ -17,7 +17,7 @@ collections:
         file: "data/sites.json"
         fields:
           - { name: "name", label: "网站名称", widget: "string", required: true }
-          - { name: "url", label: "网址", widget: "string", required: true, pattern: ["https?://.+", "必须以http://或https://开头"] }
+          - { name: "url", label: "网址", widget: "string", required: true, pattern: ["https?://.+", "必须以 http:// 或 https:// 开头"] }
           - { name: "description", label: "一句话介绍", widget: "text", required: true, default: "暂无介绍" }
           - { name: "category", label: "分类", widget: "string", required: true, default: "设计资源" }
           - { name: "screenshot", label: "截图", widget: "image", required: false, media_library: { config: { multiple: false } } }
