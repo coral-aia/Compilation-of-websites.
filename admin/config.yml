@@ -1,7 +1,7 @@
 backend:
   name: github
-  repo: coral-aia/Compilation-of-websites.   # 注意没有尾部斜杠，没有 .git
-  branch: main                               # 你的默认分支是 main
+  repo: coral-aia/Compilation-of-websites.
+  branch: main
 
 media_folder: "images/screenshots"
 public_folder: "/images/screenshots"
