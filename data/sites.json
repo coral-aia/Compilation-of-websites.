@@ -1,0 +1,18 @@
+{
+  "sites": [
+    {
+      "name": "Pinterest 设计灵感",
+      "url": "https://www.pinterest.com",
+      "description": "全球最大的视觉灵感库，收集UI、插画、摄影等",
+      "category": "设计资源",
+      "screenshot": "images/screenshots/pinterest-demo.png"
+    },
+    {
+      "name": "Hugging Face AI",
+      "url": "https://huggingface.co",
+      "description": "开源AI模型与数据集，顶尖机器学习社区",
+      "category": "AI生成工具",
+      "screenshot": "images/screenshots/huggingface-demo.png"
+    }
+  ]
+}
