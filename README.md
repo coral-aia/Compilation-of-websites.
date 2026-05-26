@@ -1,3 +1,21 @@
+# Inspiration Website Construction Domain
+
+## How to Deploy
+1. Create a new GitHub repository (public) and upload all the files in this folder.
+2. Modify the `repo` field in `admin/config.yml` to your own repository path (e.g., `username/repo-name`).
+3. Go to repository Settings → Pages → select `main` branch and `/ (root)` folder, then click Save.
+4. Visit `https://your-username.github.io/repo-name/admin` and log in with your GitHub account.
+5. Start adding/editing websites and uploading screenshots.
+
+## Daily Use
+- Frontend: `https://your-username.github.io/repo-name`
+- Admin backend: `https://your-username.github.io/repo-name/admin`
+
+## Notes
+- Screenshots should ideally be at least 600px wide, with a 16:9 aspect ratio for best display.
+- When adding a website, you can freely enter any category; the frontend will automatically generate filter buttons based on existing categories.
+
+
 # 灵感网站建设域
 
 ## 如何部署
