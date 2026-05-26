@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: coral-aia/Compilation-of-website
+  repo: coral-aia/Compilation-of-websites 
   branch: main 
 
 media_folder: "images/screenshots"   # 上传的截图存放路径
