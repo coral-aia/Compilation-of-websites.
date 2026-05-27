@@ -4,46 +4,62 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>灵感网站建设域 · 后台管理</title>
-    <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
     <script src="https://unpkg.com/netlify-cms-app@^1.5.4/dist/netlify-cms-app.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        }
+        #nc-root {
+            min-height: 100vh;
+        }
+    </style>
 </head>
 <body>
+    <div id="nc-root"></div>
     <script>
-        CMS.registerBackend('github', CMS.Backends.GitHub);
-        
-        CMS.init({
-            config: {
-                backend: {
-                    name: 'github',
-                    repo: 'coral-aia/Compilation-of-websites',
-                    branch: 'main'
-                },
-                media_folder: 'images/screenshots',
-                public_folder: '/images/screenshots',
-                collections: [
-                    {
-                        name: 'sites',
-                        label: '网站列表',
-                        label_singular: '网站',
-                        description: '管理所有收藏的设计/AI网站',
-                        file: 'data/sites.json',
-                        format: 'json',
-                        fields: [
+        // 等待 Netlify CMS 加载完成后再初始化
+        window.addEventListener('load', function() {
+            if (window.CMS) {
+                CMS.init({
+                    config: {
+                        backend: {
+                            name: 'github',
+                            repo: 'coral-aia/Compilation-of-websites',
+                            branch: 'main'
+                        },
+                        media_folder: 'images/screenshots',
+                        public_folder: '/images/screenshots',
+                        collections: [
                             {
                                 name: 'sites',
-                                label: '网站数据',
-                                widget: 'list',
+                                label: '网站列表',
+                                label_singular: '网站',
+                                description: '管理所有收藏的设计/AI网站',
+                                file: 'data/sites.json',
+                                format: 'json',
                                 fields: [
-                                    { name: 'name', label: '网站名称', widget: 'string', required: true },
-                                    { name: 'url', label: '网址', widget: 'string', required: true },
-                                    { name: 'description', label: '一句话介绍', widget: 'text', required: true },
-                                    { name: 'category', label: '分类', widget: 'string', required: true },
-                                    { name: 'screenshot', label: '截图', widget: 'image', required: false }
+                                    {
+                                        name: 'sites',
+                                        label: '网站数据',
+                                        widget: 'list',
+                                        fields: [
+                                            { name: 'name', label: '网站名称', widget: 'string', required: true },
+                                            { name: 'url', label: '网址', widget: 'string', required: true },
+                                            { name: 'description', label: '一句话介绍', widget: 'text', required: true },
+                                            { name: 'category', label: '分类', widget: 'string', required: true },
+                                            { name: 'screenshot', label: '截图', widget: 'image', required: false }
+                                        ]
+                                    }
                                 ]
                             }
                         ]
                     }
-                ]
+                });
+                console.log('✅ Netlify CMS 初始化成功');
+            } else {
+                console.error('❌ Netlify CMS 未加载');
             }
         });
     </script>
