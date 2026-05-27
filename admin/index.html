@@ -4,41 +4,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>灵感网站建设域 · 后台管理</title>
-    <!-- 加载 Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <style>
-        body { 
-            margin: 0; 
-            padding: 0; 
-        }
+        body { margin: 0; padding: 0; }
     </style>
 </head>
 <body>
+    <!-- CMS 挂载点 - 这很重要！ -->
+    <div id="nc-root"></div>
     <script>
-        // 启用手动初始化模式
         window.CMS_MANUAL_INIT = true;
         
         function initCMS() {
             if (window.CMS) {
                 try {
-                    // 直接初始化 CMS，自动从 /admin/config.yml 加载配置
                     window.CMS.init();
                     console.log('✅ Decap CMS 初始化成功');
                 } catch (error) {
-                    console.error('❌ Decap CMS 初始化失败:', error);
+                    console.error('❌ 初始化失败:', error);
                 }
             } else {
-                console.warn('⏳ Decap CMS 尚未加载，等待中...');
                 setTimeout(initCMS, 200);
             }
         }
         
-        // 等待 DOM 加载完成后初始化
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initCMS);
-        } else {
-            initCMS();
-        }
+        document.addEventListener('DOMContentLoaded', initCMS);
+        if (document.readyState !== 'loading') initCMS();
     </script>
 </body>
 </html>
