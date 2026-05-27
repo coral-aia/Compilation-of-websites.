@@ -4,72 +4,48 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>灵感网站建设域 · 后台管理</title>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <style>
-        body { 
-            margin: 0; 
-            padding: 0; 
-        }
-    </style>
+    <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
+    <script src="https://unpkg.com/netlify-cms-app@^1.5.4/dist/netlify-cms-app.js"></script>
 </head>
 <body>
     <script>
-        // 直接在 HTML 中定义配置，不依赖外部 config.yml
-        window.CMS_CONFIG = {
-            backend: {
-                name: 'github',
-                repo: 'coral-aia/Compilation-of-websites',
-                branch: 'main'
-            },
-            media_folder: 'images/screenshots',
-            public_folder: '/images/screenshots',
-            collections: [
-                {
-                    name: 'sites',
-                    label: '网站列表',
-                    label_singular: '网站',
-                    description: '管理所有收藏的设计/AI网站',
-                    files: [
-                        {
-                            name: 'sites',
-                            label: '所有网站数据',
-                            file: 'data/sites.json',
-                            fields: [
-                                { name: 'name', label: '网站名称', widget: 'string', required: true },
-                                { name: 'url', label: '网址', widget: 'string', required: true, pattern: ['https?://.+', '必须以 http:// 或 https:// 开头'] },
-                                { name: 'description', label: '一句话介绍', widget: 'text', required: true, default: '暂无介绍' },
-                                { name: 'category', label: '分类', widget: 'string', required: true, default: '设计资源' },
-                                { name: 'screenshot', label: '截图', widget: 'image', required: false, media_library: { config: { multiple: false } } }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        };
+        CMS.registerBackend('github', CMS.Backends.GitHub);
         
-        // 初始化 CMS
-        window.CMS_MANUAL_INIT = true;
-        
-        function initCMS() {
-            if (window.CMS) {
-                try {
-                    window.CMS.init({ config: window.CMS_CONFIG });
-                    console.log('✅ Decap CMS 初始化成功');
-                } catch (error) {
-                    console.error('❌ 初始化失败:', error);
-                }
-            } else {
-                console.warn('⏳ CMS 加载中...');
-                setTimeout(initCMS, 200);
+        CMS.init({
+            config: {
+                backend: {
+                    name: 'github',
+                    repo: 'coral-aia/Compilation-of-websites',
+                    branch: 'main'
+                },
+                media_folder: 'images/screenshots',
+                public_folder: '/images/screenshots',
+                collections: [
+                    {
+                        name: 'sites',
+                        label: '网站列表',
+                        label_singular: '网站',
+                        description: '管理所有收藏的设计/AI网站',
+                        file: 'data/sites.json',
+                        format: 'json',
+                        fields: [
+                            {
+                                name: 'sites',
+                                label: '网站数据',
+                                widget: 'list',
+                                fields: [
+                                    { name: 'name', label: '网站名称', widget: 'string', required: true },
+                                    { name: 'url', label: '网址', widget: 'string', required: true },
+                                    { name: 'description', label: '一句话介绍', widget: 'text', required: true },
+                                    { name: 'category', label: '分类', widget: 'string', required: true },
+                                    { name: 'screenshot', label: '截图', widget: 'image', required: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
             }
-        }
-        
-        // 页面加载完后初始化
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initCMS);
-        } else {
-            initCMS();
-        }
+        });
     </script>
 </body>
 </html>
