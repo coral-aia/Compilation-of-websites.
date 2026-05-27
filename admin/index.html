@@ -7,36 +7,33 @@
     <!-- 加载 Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <style>
-        body { margin: 0; padding: 0; }
-        #cms-root {
-            min-height: 100vh;
+        body { 
+            margin: 0; 
+            padding: 0; 
         }
     </style>
 </head>
 <body>
-    <!-- 明确指定 CMS 挂载的容器 -->
-    <div id="cms-root"></div>
     <script>
-        // 等待页面和 CMS 脚本都加载完成
+        // 启用手动初始化模式
         window.CMS_MANUAL_INIT = true;
         
         function initCMS() {
             if (window.CMS) {
-                // 获取挂载点
-                const root = document.getElementById('cms-root');
-                if (!root) {
-                    console.error('挂载点 #cms-root 不存在');
-                    return;
+                try {
+                    // 直接初始化 CMS，自动从 /admin/config.yml 加载配置
+                    window.CMS.init();
+                    console.log('✅ Decap CMS 初始化成功');
+                } catch (error) {
+                    console.error('❌ Decap CMS 初始化失败:', error);
                 }
-                // 初始化 CMS，直接挂载到 root
-                window.CMS.init();  // Decap CMS 会自动从 /admin/config.yml 加载，自动挂载到页面
             } else {
-                console.warn('Decap CMS 尚未加载，等待中...');
+                console.warn('⏳ Decap CMS 尚未加载，等待中...');
                 setTimeout(initCMS, 200);
             }
         }
         
-        // 如果脚本已经加载完成，立即初始化；否则等待 load 事件
+        // 等待 DOM 加载完成后初始化
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initCMS);
         } else {
