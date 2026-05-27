@@ -2,6 +2,8 @@ backend:
   name: github
   repo: coral-aia/Compilation-of-websites
   branch: main
+  auth_endpoint: /api/auth  # 添加这行
+  cms_label_prefix: netlify_cms/  # 添加这行
 
 media_folder: "images/screenshots"
 public_folder: "/images/screenshots"
