@@ -29,9 +29,7 @@
                     return;
                 }
                 // 初始化 CMS，直接挂载到 root
-                window.CMS.init({
-                    // 不传入 config 参数，让它自动从 /admin/config.yml 加载
-                }, root);
+                window.CMS.init();  // Decap CMS 会自动从 /admin/config.yml 加载，自动挂载到页面
             } else {
                 console.warn('Decap CMS 尚未加载，等待中...');
                 setTimeout(initCMS, 200);
